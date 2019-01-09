@@ -8,6 +8,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -39,6 +40,7 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { AdminService } from './_services/admin.service';
 import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { ApiInterceptorProvider } from './_services/api-interceptor.interceptor';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -78,6 +80,7 @@ export function tokenGetter() {
       RouterModule.forRoot(appRoutes),
       ModalModule.forRoot(),
       NgxGalleryModule,
+      NgxSpinnerModule,
       FileUploadModule,
       JwtModule.forRoot({
          config: {
@@ -89,6 +92,7 @@ export function tokenGetter() {
    ],
    providers: [
       AuthService,
+      ApiInterceptorProvider,
       ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
